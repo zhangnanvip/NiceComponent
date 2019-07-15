@@ -1,6 +1,6 @@
 #### NiceBottomSheet(底部弹窗)
 
-<img src="images/bottomsheet.gif" width="400"/>
+<img src="images/nicebottomsheet.gif" width="400"/>
 
 使用方法：
 
