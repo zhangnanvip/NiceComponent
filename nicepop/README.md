@@ -1,3 +1,9 @@
+#### 库文件引用
+
+```
+implementation 'com.znvip.nicepop:nicepop:1.0.0'
+```
+
 #### NicePop(上下方向自适应弹窗)
 
 <img src="images/nicepop.gif" width="400"/>
