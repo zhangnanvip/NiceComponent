@@ -1,6 +1,6 @@
 #### NicePop(上下方向自适应弹窗)
 
-<img src="nicepop/images/nicepop.gif" width="400"/>
+<img src="images/nicepop.gif" width="400"/>
 
 使用方法：
 

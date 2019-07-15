@@ -1,2 +1,2 @@
 # NiceComponent
-component of android
+nice component of android
