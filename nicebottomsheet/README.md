@@ -1,3 +1,9 @@
+#### 库文件引用
+
+```
+implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.0'
+```
+
 #### NiceBottomSheet(底部弹窗)
 
 <img src="images/nicebottomsheet.gif" width="400"/>
