@@ -2,7 +2,7 @@
 
 ```
 implementation 'com.android.support:design:28.0.0'
-implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.0'
+implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.1'
 ```
 
 #### NiceBottomSheet(底部弹窗)
@@ -39,4 +39,6 @@ fun showBottomSheet() {
 
 3.拖动开关（banDrop）
 
-4.默认头部（configDefaultTitleView）与自定义头部（setTitleLayoutResId or setTitleView）
+4.禁止拖动后状态 （banDropState）
+
+5.默认头部（configDefaultTitleView）与自定义头部（setTitleLayoutResId or setTitleView）

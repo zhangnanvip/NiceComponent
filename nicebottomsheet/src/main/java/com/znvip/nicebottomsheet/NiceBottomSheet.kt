@@ -18,16 +18,20 @@ class NiceBottomSheet : BottomSheetDialogFragment() {
 
     var banDrop = false
 
+    var banDropState = BottomSheetBehavior.STATE_COLLAPSED
+
     private var bottomSheetBehavior: BottomSheetBehavior<View>? = null
     private val bottomSheetBehaviorCallback = object : BottomSheetBehavior.BottomSheetCallback() {
 
         override fun onStateChanged(bottomSheet: View, newState: Int) {
             if (banDrop && newState == BottomSheetBehavior.STATE_DRAGGING) {
-                bottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
+                bottomSheetBehavior?.state = banDropState
             }
         }
 
-        override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            if (slideOffset == -1.0f) dismiss()
+        }
     }
 
     private var customTitleView: View? = null
@@ -59,14 +63,14 @@ class NiceBottomSheet : BottomSheetDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        if (peekHeight > 0) {
-            view?.post {
-                val parent = view?.parent as View
-                val params = parent.layoutParams as CoordinatorLayout.LayoutParams
-                val behavior = params.behavior
-                bottomSheetBehavior = behavior as BottomSheetBehavior<View>?
-                bottomSheetBehavior?.setBottomSheetCallback(bottomSheetBehaviorCallback)
-                bottomSheetBehavior?.peekHeight = 300
+        view?.post {
+            val parent = view?.parent as View
+            val params = parent.layoutParams as CoordinatorLayout.LayoutParams
+            val behavior = params.behavior
+            bottomSheetBehavior = behavior as BottomSheetBehavior<View>?
+            bottomSheetBehavior?.setBottomSheetCallback(bottomSheetBehaviorCallback)
+            if (peekHeight > 0) {
+                bottomSheetBehavior?.peekHeight = peekHeight
             }
         }
     }
@@ -81,7 +85,7 @@ class NiceBottomSheet : BottomSheetDialogFragment() {
     fun setMarginTop(MarginTop: Int): NiceBottomSheet {
         assertUIUpdate()
         val layoutParams =
-                FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+            FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
         layoutParams.topMargin = MarginTop
         ll_root.layoutParams = layoutParams
         return this
