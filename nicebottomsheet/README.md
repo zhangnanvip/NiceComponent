@@ -2,7 +2,7 @@
 
 ```
 implementation 'com.android.support:design:28.0.0'
-implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.1'
+implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.2'
 ```
 
 #### NiceBottomSheet(底部弹窗)
@@ -14,12 +14,12 @@ implementation 'com.znvip.nicebottomsheet:nicebottomsheet:1.0.1'
 ```
 fun showBottomSheet() {
     NiceBottomSheet.newInstance()
-        // default title view
-        .configDefaultTitleView { titleView ->
-            // do something with titleView
-            return@configDefaultTitleView "文字"
-        }
         .setUpdateUIListener {
+              // default title view
+              it.configDefaultTitleView { parent,titleView,backView ->
+                  // do something
+                  titleView.text = "文字"
+              }
               // custom title view
               it.setTitleView(TextView(this).apply {
                   text = "文字"
@@ -42,3 +42,5 @@ fun showBottomSheet() {
 4.禁止拖动后状态 （banDropState）
 
 5.默认头部（configDefaultTitleView）与自定义头部（setTitleLayoutResId or setTitleView）
+
+6.移除头部（hasTitleView）

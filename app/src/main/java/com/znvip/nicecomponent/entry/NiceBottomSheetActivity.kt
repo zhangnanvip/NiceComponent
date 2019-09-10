@@ -26,47 +26,52 @@ class NiceBottomSheetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_nice_bottom_sheet)
         btn_bottom_sheet_text.setOnClickListener {
             NiceBottomSheet.newInstance()
+                .setUpdateUIHandler {
                     // default title view
-                    .configDefaultTitleView {
-                        // do something with titleView
-                        return@configDefaultTitleView "文字（默认头部）"
-                    }
-                    .setUpdateUIHandler {
-                        it.setContentView(TextView(this).apply {
-                            setPadding(16)
-                            text = "文字"
-                        })
-                    }
-                    .showBySelfGrowthTag(supportFragmentManager)
+                    it.configDefaultTitleView { parent, titleView, backView ->
+                        // do something
+                        titleView.text = "文字"
+                    }.setContentView(TextView(this).apply {
+                        setPadding(16)
+                        text = "文字"
+                    })
+                }
+                .showBySelfGrowthTag(supportFragmentManager)
         }
         btn_bottom_sheet_img.setOnClickListener {
             NiceBottomSheet.newInstance()
-                    .setUpdateUIHandler {
-                        val ll = LinearLayout(this)
-                        ll.orientation = LinearLayout.VERTICAL
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
-                        // custom title view
-                        it.setTitleView(TextView(this).apply {
-                            setPadding(16)
-                            text = "图片（自定义头部）"
-                            gravity = Gravity.CENTER
-                            setTextColor(Color.BLACK)
-                            setBackgroundColor(ContextCompat.getColor(this@NiceBottomSheetActivity, R.color.colorAccent2))
-                        }).setContentView(ll)
-                    }
-                    .showBySelfGrowthTag(supportFragmentManager)
+                .setUpdateUIHandler {
+                    val ll = LinearLayout(this)
+                    ll.orientation = LinearLayout.VERTICAL
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    ll.addView(ImageView(this).apply { setImageResource(R.drawable.ic_nice_foreground) })
+                    // custom title view
+                    it.setTitleView(TextView(this).apply {
+                        setPadding(16)
+                        text = "图片（自定义头部）"
+                        gravity = Gravity.CENTER
+                        setTextColor(Color.BLACK)
+                        setBackgroundColor(
+                            ContextCompat.getColor(
+                                this@NiceBottomSheetActivity,
+                                R.color.colorAccent2
+                            )
+                        )
+                    }).setContentView(ll)
+                }
+                .showBySelfGrowthTag(supportFragmentManager)
         }
     }
 
     companion object {
 
-        fun start(context: Context) = context.startActivity(Intent(context, NiceBottomSheetActivity::class.java))
+        fun start(context: Context) =
+            context.startActivity(Intent(context, NiceBottomSheetActivity::class.java))
 
     }
 }
